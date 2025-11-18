@@ -1,0 +1,9 @@
+{
+    "n_features": 79,
+    "n_numeric": 36,
+    "n_categorical": 43,
+    "n_train_samples": 1460,
+    "n_test_samples": 1459,
+    "target_mean": 180921.19589041095,
+    "target_std": 79415.29188606751
+}
