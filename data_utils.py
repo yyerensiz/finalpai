@@ -9,6 +9,8 @@ from sklearn.impute import SimpleImputer
 import json
 import os
 
+RESULTS_FOLDER = "results"
+MODELS_FOLDER = "models"
 
 class DataProcessor:
     """Класс для обработки данных House Prices"""
@@ -166,6 +168,8 @@ class DataProcessor:
     def save_preprocessing_info(self, filepath='preprocessing_info.json'):
         """Сохранить информацию о предобработке"""
         try:
+            filepath = os.path.join(RESULTS_FOLDER, filepath)
+
             with open(filepath, 'w', encoding='utf-8') as f:
                 json.dump(self.preprocessing_info, f, indent=4, ensure_ascii=False)
             print(f"✓ Информация о предобработке сохранена в {filepath}")

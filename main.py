@@ -10,7 +10,7 @@ import numpy as np
 from data_utils import DataProcessor
 from feature_utils import FeatureSelector, compare_feature_selection_methods
 from model_utils import ModelTrainer
-
+RESULTS_FOLDER = "results"
 
 class HousePricePredictor:
     """Главный класс приложения"""
@@ -256,12 +256,12 @@ class HousePricePredictor:
             'Id': self.test_ids,
             'SalePrice': predictions
         })
-        
+
         # Сохраняем
-        submission_path = 'submission.csv'
-        submission.to_csv(submission_path, index=False)
-        
-        print(f"\n✓ Submission сохранен в {submission_path}")
+        filepath = 'submission.csv'   
+        filepath = os.path.join(RESULTS_FOLDER, filepath)
+        submission.to_csv(filepath, index=False)
+        print(f"\n✓ Submission сохранен в {filepath}")
         print(f"Количество предсказаний: {len(predictions)}")
         print(f"\nСтатистика предсказаний:")
         print(f"Минимум: ${predictions.min():,.2f}")

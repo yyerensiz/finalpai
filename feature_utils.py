@@ -11,6 +11,9 @@ import json
 from sklearn.linear_model import LinearRegression as _LR
 from sklearn.metrics import r2_score
 
+import os
+RESULTS_FOLDER = "results"
+MODELS_FOLDER = "models"
 
 class FeatureSelector:
     """Класс для отбора наиболее важных признаков"""
@@ -204,6 +207,8 @@ class FeatureSelector:
     def save_selection_info(self, filepath='feature_selection_info.json'):
         """Сохранить информацию об отборе признаков"""
         try:
+            filepath = os.path.join(RESULTS_FOLDER, filepath)
+
             with open(filepath, 'w', encoding='utf-8') as f:
                 json.dump(self.selection_info, f, indent=4, ensure_ascii=False)
             print(f"✓ Информация об отборе признаков сохранена в {filepath}")

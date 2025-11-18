@@ -1,0 +1,11 @@
+{
+    "method": "SelectKBest",
+    "k": 5,
+    "selected_features": [
+        "OverallQual",
+        "ExterQual",
+        "GrLivArea",
+        "GarageCars",
+        "GarageArea"
+    ]
+}

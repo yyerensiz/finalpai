@@ -14,6 +14,10 @@ import xgboost as xgb
 import pickle
 import json
 from datetime import datetime
+import os
+
+RESULTS_FOLDER = "results"
+MODELS_FOLDER = "models"
 
 
 class ModelTrainer:
@@ -348,6 +352,12 @@ class ModelTrainer:
             return False
         
         try:
+            
+            if not filepath.endswith(".pk1"):
+                filepath += ".pk1"
+
+            filepath = os.path.join(MODELS_FOLDER, filepath)
+
             with open(filepath, 'wb') as f:
                 pickle.dump({
                     'model': self.best_model,
@@ -364,6 +374,11 @@ class ModelTrainer:
     def load_model(self, filepath='best_model.pkl'):
         """Загрузить модель"""
         try:
+            if not filepath.endswith(".pkl"):
+                filepath += ".pkl"
+
+            filepath = os.path.join(MODELS_FOLDER, filepath)
+
             with open(filepath, 'rb') as f:
                 data = pickle.load(f)
             
@@ -393,6 +408,7 @@ class ModelTrainer:
     def save_results_log(self, filepath='training_log.txt'):
         """Сохранить лог результатов"""
         try:
+            filepath = os.path.join(RESULTS_FOLDER, filepath)
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write("="*60 + "\n")
                 f.write("РЕЗУЛЬТАТЫ ОБУЧЕНИЯ МОДЕЛЕЙ\n")
